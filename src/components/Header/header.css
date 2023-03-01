@@ -11,6 +11,10 @@
     max-width: 1024px;
     margin: 20px 0px 100px 0px;
   }
+
+  .headerContainer.listMode {
+    margin: 0px 0px 0px 0px;
+  }
   
   .headerContainer.listMode {
     margin: 20px 0px 0px 0px;
@@ -125,4 +129,8 @@
     cursor: pointer;
     background-color: white;
     text-align: center;
+  }
+
+  .optionCounter:disabled {
+    cursor: not-allowed;
   }
