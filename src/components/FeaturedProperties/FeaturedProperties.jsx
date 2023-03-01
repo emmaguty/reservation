@@ -20,6 +20,7 @@ const FeaturedProperties = () => {
             </div>
             <div className="fpItem">
                 <img src={Hotel_2} alt="hotel_room" />
+                <span className="fpName">Aparthotel Stare Miastro</span>
                 <span className="fpCity">Acapulco, México</span>
                 <span className="fpPrice">Starting from $209</span>
                 <div className="fpRating">
@@ -29,6 +30,7 @@ const FeaturedProperties = () => {
             </div>
             <div className="fpItem">
                 <img src={Hotel_3} alt="hotel_room" />
+                <span className="fpName">Aparthotel Stare Miastro</span>
                 <span className="fpCity">Ciudad de México, México</span>
                 <span className="fpPrice">Starting from $199</span>
                 <div className="fpRating">
