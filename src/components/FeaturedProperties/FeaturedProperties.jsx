@@ -1,43 +1,31 @@
-import React from 'react'
+import useFetch from '../../hooks/useFetch';
 
-// import { Hotel_1, Hotel_2, Hotel_3 } from '../../assets/images/index'
 import { Hotel_1, Hotel_2, Hotel_3 } from '../../assets/images/index'
 
 import './featuredProperties.css';
 
 const FeaturedProperties = () => {
+
+    const { data, loading, error } = useFetch("/hotels?featured=true&limit=4");
+
+
     return (
         <div className='fp'>
-            <div className="fpItem">
-                <img src={Hotel_1} alt="hotel_room" />
-                <span className="fpName">Aparthotel Stare Miastro</span>
-                <span className="fpCity">Los Angeles, USA</span>
-                <span className="fpPrice">Starting from $299</span>
-                <div className="fpRating">
-                    <button>9.0</button>
+            {loading ? "Loading..." :  <>
+            {data.map(item=>(
+            <div className="fpItem" key={item._id}>
+                <img 
+                src={item.photos[0]} 
+                alt="hotel_room" />
+                <span className="fpName">{item.name}</span>
+                <span className="fpCity">{item.city}</span>
+                <span className="fpPrice">Starting from {item.cheapestPrice}</span>
+                {item.rating && <div className="fpRating">
+                    <button>{item.rating}</button>
                     <span>Excellent</span>
-                </div>
-            </div>
-            <div className="fpItem">
-                <img src={Hotel_2} alt="hotel_room" />
-                <span className="fpName">Aparthotel Stare Miastro</span>
-                <span className="fpCity">Acapulco, México</span>
-                <span className="fpPrice">Starting from $209</span>
-                <div className="fpRating">
-                    <button>9.3</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
-            <div className="fpItem">
-                <img src={Hotel_3} alt="hotel_room" />
-                <span className="fpName">Aparthotel Stare Miastro</span>
-                <span className="fpCity">Ciudad de México, México</span>
-                <span className="fpPrice">Starting from $199</span>
-                <div className="fpRating">
-                    <button>9.0</button>
-                    <span>Excellent</span>
-                </div>
-            </div>
+                </div>}
+            </div>))}
+            </>}
         </div>
     )
 }
