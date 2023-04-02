@@ -10,7 +10,8 @@ import { faBed, faCalendarDays, faCar, faPlane, faTaxi, faPerson } from '@fortaw
 import { format } from 'date-fns';
 
 import './header.css';
-import {SearchContext} from '../../context/SearchContext';
+import { SearchContext } from '../../context/SearchContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
@@ -48,6 +49,8 @@ const Header = ({ type }) => {
     navigate("/hotels", { state: { destination, dates, options } })
   }
 
+  const { user } = useContext(AuthContext)
+
   return (
     <div className='header'>
       <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
@@ -80,7 +83,9 @@ const Header = ({ type }) => {
               Get rewarded for your travels - unlock instant savings of 10% or more
               with a free GOA7 accounting
             </p>
-            <button className="headerBtn">Sign In / Register</button>
+            {!user &&
+              <button className="headerBtn">Sign In / Register</button>
+            }
             <div className='headerSearch'>
               <div className='headerSearchItem'>
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
